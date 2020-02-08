@@ -25,7 +25,7 @@ const val PERMISSION_REQUEST_FINE_LOCATION = 0
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
-    private var map: GoogleMap? = null
+    private lateinit var map: GoogleMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +64,21 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val zoomLevel = 10f
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(newDelhi, zoomLevel))
+
+        addMarkerOnLongClick()
+    }
+
+
+    private fun addMarkerOnLongClick(){
+        map.setOnMapLongClickListener {
+            val snippet = getString(R.string.new_marker, it.latitude, it.longitude
+            )
+            map.addMarker(
+                MarkerOptions().position(it)
+                    .title(getString(R.string.new_marker_title))
+                    .snippet(snippet)
+            )
+        }
     }
 
     private fun  getBitmapDescriptorFromVector(context: Context, resourceId:Int): BitmapDescriptor {
@@ -101,7 +116,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         if (requestCode == PERMISSION_REQUEST_FINE_LOCATION) {
             if (grantResults.size == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                map?.isMyLocationEnabled = true
+                map.isMyLocationEnabled = true
 
             } else {
                 Toast.makeText(this, getString(R.string.location_permission_denied),

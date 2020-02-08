@@ -6,4 +6,8 @@
     <string name="location_permission_denied">The permission to access location was denied.</string>
 
     <string name="ok">OK</string>
+
+    <string name="new_marker">Latitude: %1$f Longitude: %2$f</string>
+
+    <string name="new_marker_title">New Location</string>
 </resources>
