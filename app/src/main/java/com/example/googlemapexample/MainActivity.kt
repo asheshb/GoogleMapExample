@@ -25,7 +25,7 @@ const val PERMISSION_REQUEST_FINE_LOCATION = 0
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
-    private var map: GoogleMap? = null
+    private lateinit var map: GoogleMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,12 +56,13 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         googleMap.addMarker(
             MarkerOptions().position(newDelhi)
                 .title("Marker at New Delhi")
-                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_person_pin_black_48dp))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_person_png))
                 .icon(getBitmapDescriptorFromVector(this, R.drawable.ic_person_pin))
         )
 
 //        googleMap.moveCamera(CameraUpdateFactory.newLatLng(newDelhi))
 
+        //1, 5, 10, 15, 20 zoom levels
         val zoomLevel = 10f
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(newDelhi, zoomLevel))
     }
@@ -101,7 +102,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         if (requestCode == PERMISSION_REQUEST_FINE_LOCATION) {
             if (grantResults.size == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                map?.isMyLocationEnabled = true
+                map.isMyLocationEnabled = true
 
             } else {
                 Toast.makeText(this, getString(R.string.location_permission_denied),
