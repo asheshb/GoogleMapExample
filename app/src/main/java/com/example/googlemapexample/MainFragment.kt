@@ -29,6 +29,9 @@ import com.google.android.material.snackbar.Snackbar
 /**
  * A simple [Fragment] subclass.
  */
+
+const val PERMISSION_REQUEST_FINE_LOCATION = 0
+
 class MainFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var mapView: MapView
@@ -104,7 +107,7 @@ class MainFragment : Fragment(), OnMapReadyCallback {
             snack.show()
         } else {
             ActivityCompat.requestPermissions(activity,
-                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 PERMISSION_REQUEST_FINE_LOCATION)
         }
     }
