@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment!!.getMapAsync(this)
     }
 
-    override fun onMapReady(googleMap: GoogleMap) { // Add a marker in Sydney, Australia,
+    override fun onMapReady(googleMap: GoogleMap) { 
         val newDelhi = LatLng(28.629717, 77.207065)
         googleMap.addMarker(
             MarkerOptions().position(newDelhi)
