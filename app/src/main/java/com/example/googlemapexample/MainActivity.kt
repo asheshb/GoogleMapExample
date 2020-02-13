@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             snack.show()
         } else {
             ActivityCompat.requestPermissions(this,
-                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 PERMISSION_REQUEST_FINE_LOCATION)
         }
     }
